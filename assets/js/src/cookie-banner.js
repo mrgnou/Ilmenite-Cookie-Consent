@@ -5,14 +5,14 @@
  * 
  * @author Bernskiold Media <info@bernskioldmedia.com>
  */
-let Ilmenite_Cookie_Consent = function($, ilcc) {
+var Ilmenite_Cookie_Consent = function($, ilcc) {
 
 	/**
 	 * Module Definition
 	 *
 	 * @type {{}}
 	 */
-	let module = {
+	var module = {
 
 		/**
 		 * Settings
@@ -73,10 +73,10 @@ let Ilmenite_Cookie_Consent = function($, ilcc) {
 		 * @param {string} name 
 		 */
 		getCookieValue: function(name) {
-			let nameEQ = name + "=";
-			let ca = document.cookie.split(';');
-			for(let i=0;i < ca.length;i++) {
-				let c = ca[i];
+			var nameEQ = name + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0;i < ca.length;i++) {
+				var c = ca[i];
 				while (c.charAt(0)==' ') c = c.substring(1,c.length);
 				if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
 			}
@@ -95,7 +95,7 @@ let Ilmenite_Cookie_Consent = function($, ilcc) {
 					});
 
 				},
-				complete: function() {
+				compvare: function() {
 
 					// Remove cookie banner class
 					$('body').removeClass('has-cookie-banner');

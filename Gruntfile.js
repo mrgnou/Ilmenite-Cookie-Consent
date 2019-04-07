@@ -68,8 +68,8 @@ module.exports = function(grunt) {
 
 		uglify: {
 			build: {
-				src: 'assets/js/cookie-banner.js',
-				dest: 'assets/js/cookie-banner.min.js'
+				src: 'assets/js/src/cookie-banner.js',
+				dest: 'assets/js/dist/cookie-banner.min.js'
 			}
 		},
 
