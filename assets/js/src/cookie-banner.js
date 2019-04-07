@@ -54,7 +54,7 @@ var Ilmenite_Cookie_Consent = function(ilcc) {
 			// Set the contents.
 			const consentBlock = document.createElement('div');
 			consentBlock.classList = 'ilcc-cookie-consent-notice js--ilcc-cookie-consent-notice';
-			consentBlock.innerHTML = '<p>' + ilcc.cookieConsentText + '<button class="ilcc-cookie-consent-close js--ilcc-cookie-consent-close close-cookie-block">' + ilcc.acceptText + '</button></p>';
+			consentBlock.innerHTML = '<p>' + ilcc.cookieConsentText + '<button class="ilcc-cookie-consent-close js--ilcc-cookie-consent-close close-cookie-block ' + ilcc.btnClassname + '">' + ilcc.acceptText + '</button></p>';
 
 			// Append to body
 			body.appendChild(consentBlock);

@@ -18,7 +18,7 @@ Out of the box, the plugin includes a lightweight stylesheet. If you don't want 
 
 Just define the following filter somewhere in your code, such as the theme functions.php file:
 
-    apply_filters( 'ilcc_load_stylesheet', '__return_false' );
+    add_filter( 'ilcc_load_stylesheet', '__return_false' );
 
 ### Changing the text and/or the button label.
 To change the text in the consent banner and/or the button label, there are two filters: ilcc_consent_text and ilcc_accept_text.
@@ -30,14 +30,14 @@ Just set their value somewhere in your code, such as in the functions.php file o
         return $text;
     }
 
-    apply_filters( 'ilcc_consent_text', 'ilcc_modify_consent_text' );
+    add_filter( 'ilcc_consent_text', 'ilcc_modify_consent_text' );
 
     function ilcc_modify_accept_text( $text ) {
         $text = __( 'I Accept', 'YOURTEXTDOMAIN' );
         return $text;
     }
 
-    apply_filters( 'ilcc_accept_text', 'ilcc_modify_accept_text' );
+    add_filter( 'ilcc_accept_text', 'ilcc_modify_accept_text' );
 
 ### List of Actions
 
@@ -86,6 +86,11 @@ A complete *.pot* file is available in the *translations/* directory. If you use
 However, in some locales, the work with the Translate site is not up to speed. We will continue to support bundled translations because of this.
 
 ## Changelog
+
+**Version 1.3.0**
+
+- JS script converted to Vanilla (jQuery removed)
+- Add filter on button classname
 
 **Version 1.2.0**
 

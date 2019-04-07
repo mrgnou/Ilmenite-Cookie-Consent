@@ -175,6 +175,7 @@ class Ilmenite_Cookie_Consent {
 		wp_localize_script( 'ilmenite-cookie-consent', 'ilcc', array(
 			'cookieConsentText' => $this->get_consent_text(),
 			'acceptText'		=> $this->get_accept_text(),
+			'btnClassname'		=> $this->get_btn_classname(),
 		) );
 
 		// Finally, enqueue!
@@ -277,6 +278,15 @@ class Ilmenite_Cookie_Consent {
 	 */
 	public function get_cookie_name() {
 		return apply_filters( 'ilcc_cookie_name', 'EUConsentCookie' );
+	}
+
+	/**
+	 * Get the button classname.
+	 *
+	 * @return void
+	 */
+	public function get_btn_classname() {
+		return apply_filters( 'ilcc_btn_classname', '' );
 	}
 
 	/**
