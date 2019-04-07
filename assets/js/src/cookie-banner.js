@@ -5,7 +5,9 @@
  * 
  * @author Bernskiold Media <info@bernskioldmedia.com>
  */
-var Ilmenite_Cookie_Consent = function($, ilcc) {
+var Ilmenite_Cookie_Consent = function(ilcc) {
+
+	var body = document.getElementsByTagName('body')[0]
 
 	/**
 	 * Module Definition
@@ -50,20 +52,21 @@ var Ilmenite_Cookie_Consent = function($, ilcc) {
 		createBanner: function() {
 
 			// Set the contents.
-			const consentBlock = '<div class="ilcc-cookie-consent-notice js--ilcc-cookie-consent-notice" id="cookie-consent-block"><p>' + ilcc.cookieConsentText + '<button class="ilcc-cookie-consent-close js--ilcc-cookie-consent-close close-cookie-block">' + ilcc.acceptText + '</button></p></div>';
-
-			// Get body tag
-			const $body = $('body');
+			const consentBlock = document.createElement('div');
+			consentBlock.classList = 'ilcc-cookie-consent-notice js--ilcc-cookie-consent-notice';
+			consentBlock.innerHTML = '<p>' + ilcc.cookieConsentText + '<button class="ilcc-cookie-consent-close js--ilcc-cookie-consent-close close-cookie-block">' + ilcc.acceptText + '</button></p>';
 
 			// Append to body
-			$body.append(consentBlock);
-
-			// Get the height of the consent block
-			var consentBlockHeight = $('.js--ilcc-cookie-consent-notice').innerHeight();
+			body.appendChild(consentBlock);
 
 			// Add class to body
-			$body.addClass('has-cookie-banner');
-			$body.css('padding-top', consentBlockHeight + 'px');
+			body.classList.add('has-cookie-banner');
+
+			// Remove banner and set the accepted cookie on close
+			document.querySelector('.js--ilcc-cookie-consent-close').addEventListener('click', function() {
+				module.removeBanner();
+				module.setCookie();
+			});
 
 		},
 
@@ -87,24 +90,7 @@ var Ilmenite_Cookie_Consent = function($, ilcc) {
 		 * Remove the cookie banner from the page.
 		 */
 		removeBanner: function() {
-			$('.js--ilcc-cookie-consent-notice').slideToggle({
-				start: function() {
-
-					$('body').animate({
-						'padding-top': '0px'
-					});
-
-				},
-				compvare: function() {
-
-					// Remove cookie banner class
-					$('body').removeClass('has-cookie-banner');
-					
-					// Remove the cookie banner from the DOM.
-					$(this).remove();
-	
-				}
-			});
+			body.classList.remove('has-cookie-banner');
 		}
 
 	};
@@ -114,22 +100,13 @@ var Ilmenite_Cookie_Consent = function($, ilcc) {
 	 * the cookie terms (ie. we have no cookie), then we
 	 * create the banner.
 	 */
-	$(window).load(function() {
+	document.addEventListener("DOMContentLoaded", function() {
 		if(module.getCookieValue(module.settings.cookieName) != module.settings.cookieActiveValue ) {
 			module.createBanner();
 		}
 	});
 
-	/**
-	 * If the user clicks on the accept button to close the banner,
-	 * we remove it and set the accepted cookie.
-	 */
-	$(document.body).on('click', '.js--ilcc-cookie-consent-close', function() {
-		module.removeBanner();
-		module.setCookie();
-	});
-
 	// Return the module.
 	return module;
 
-}(jQuery, ilcc);
+}(ilcc);

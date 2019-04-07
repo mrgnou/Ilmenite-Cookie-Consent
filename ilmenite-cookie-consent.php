@@ -4,7 +4,7 @@
  *	Plugin URI: 	https://github.com/bernskioldmedia/Ilmenite-Cookie-Consent
  *	Description: 	A simple, developer-friendly WordPress plugin that lets visitors know that the site is using cookies.
  *	Author: 		Bernskiold Media
- *	Version: 		1.2.0
+ *	Version: 		1.3.0
  *	Author URI: 	http://www.bernskioldmedia.com/
  *	Text Domain: 	ilmenite-cookie-consent
  *	Domain Path: 	/languages
@@ -53,7 +53,7 @@ class Ilmenite_Cookie_Consent {
 	 * 
 	 * @var string
 	 */
-	public $version = '1.2.0';
+	public $version = '1.3.0';
 
 	/**
 	 * The single instance of the class
@@ -155,22 +155,17 @@ class Ilmenite_Cookie_Consent {
 		}
 
 		/**
-		 * We need jQuery for this plugin.
-		 */
-		wp_enqueue_script( 'jquery' );
-
-		/**
 		 * Register the cookie consent JS that's responsible
 		 * for most of the work. For debug purposes, we
 		 * register a non-minified version if asked by WordPress.
 		 */
 		if ( SCRIPT_DEBUG ) {
-			$js_path = $this->plugin_url . '/assets/js/dist/cookie-banner.js';
+			$js_path = $this->plugin_url . '/assets/js/src/cookie-banner.js';
 		} else {
 			$js_path = $this->plugin_url . '/assets/js/dist/cookie-banner.min.js';
 		}
 
-		wp_register_script( 'ilmenite-cookie-consent', $js_path, array( 'jquery' ), $this->version, true );
+		wp_register_script( 'ilmenite-cookie-consent', $js_path, array(), $this->version, true );
 
 		/**
 		 * We localize the script to add our texts.
